@@ -1,10 +1,9 @@
-const { getMaxListeners } = require('process');
 const Manager = require('../lib/manager');
 
 describe('Manager', () => {
     describe('Initialization', () => {
         //Positive test
-        it("should create an object with a name, idm email, and office if given valid inputs", () => {
+        it("should create an object with a name, id, email, and office if given valid inputs", () => {
             //Arrange
             const name = 'Frodo';
             const id = 2;
@@ -56,7 +55,7 @@ describe('Manager', () => {
             //Arrange
             const cb = () => new Manager('Frodo', 2, 'Frodo@gmail.com', 'asf');
             const err = new Error(
-                "Expected parameter 'id' to be a non-negative number"
+                "Expected parameter 'officeNumber' to be a non-negative number"
             );
 
             //Assert
