@@ -1,8 +1,14 @@
 {
-  "devDependencies": {
-    "jest": "^27.5.1"
+  "name": "04-ins_organizing-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest --verbose"
   },
-  "dependencies": {
-    "inquirer": "^8.2.2"
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^24.9.0"
   }
 }
