@@ -26,28 +26,47 @@ function generateHTML(data) {
     </html>
     `;
 }
-
+const engineers = [];
+const interns = [];
 /**
  * 
  * @param {repo[]} repos the array of relevant repo information
  */
  function generateManagerCard(data){
-    return `<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>Office Number: </h4><p id='content-3'>${data.officeNumber}</p></div></div></section></div>`;
+    return `<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1'>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>Office Number: </h4><p id='content-3'>${data.officeNumber}</p></div></div></section></div>`;
 };
 /**
  * 
  * @param {repo[]} repos the array of relevant repo information
  */
  function generateEngineerCard(data){
-    return `<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>GitHub: </h4><p id='content-3'>${data.github}</p></div></div></section></div>`;
+    engineers.push(`<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1'>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>GitHub: </h4><p id='content-3'>${data.github}</p></div></div></section></div>`);
 };
 /**
  * 
  * @param {repo[]} repos the array of relevant repo information
  */
  function generateInternCard(data){
-    return `<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>School: </h4><p id='content-3'>${data.school}</p></div></div></section></div>`;
+    interns.push(`<div id='card-container'><section id='card'><div id='card-head'><h2 id='employee-name'>${data.name}</h2><img src='../images/manager.img'><h3 id='job-title'>${data.role}</h3></div><div id='card-content'><div id='content'><h4 id='label-1'>ID: </h4><p id='content-1'>${data.id}</p></div><div id='content'><h4 id='label-2'>Email: </h4><p id='content-2'>${data.email}</p></div><div id='content'><h4 id='label-3'>School: </h4><p id='content-3'>${data.school}</p></div></div></section></div>`);
 };
+function storeEngineer(data) {
+    engineers.push(data);
+};
+function storeIntern(data) {
+    interns.push(data);
+};
+
+/**
+ * 
+ * @param {repo[]} repos the array of relevant repo information
+ */
+ function generateCardsHTML(cards){
+    ret = "";
+    cards.forEach(card => {
+        ret = `${ret}<li class="repo-item"><a href="${repo.url}">${repo.name}</a></li>\n`;
+    });
+    return ret;
+}
 
 module.exports = generateHTML;
 

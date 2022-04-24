@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHTML = require('./src/generator.js');
+const generateEngineerCard = require('./src/generator.js');
+const generateInternCard = require('./src/generator.js');
 const fileName = './dist/generated.html';
 
 /**
@@ -129,10 +131,13 @@ function init() {
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answers) => {
         if (answers.teamMember === 'Engineer') {
+            generateEngineerCard(answers);
             return addEngineer();
         } else if (answers.teamMember === 'Intern') {
+            generateEngineerCard(answers);
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else generateEngineerCard(answers);
+        writeToFile(fileName, answers);
         return;
     })
 };
@@ -140,10 +145,13 @@ function addEngineer() {
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answers) => {
         if(answers.teamMember === 'Engineer') {
+            generateInternCard(answers);
             return addEngineer();
         } else if (answers.teamMember === 'Intern') {
+            generateInternCard(answers);
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else generateInternCard(answers);
+        writeToFile(fileName, answers);
         return;
     })
 };
