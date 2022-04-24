@@ -63,7 +63,7 @@ const questionsEngineer = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        name: 'team-member',
+        name: 'teamMember',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
     },
 ];
@@ -95,7 +95,7 @@ const questionsIntern = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        name: 'team-member',
+        name: 'teamMember',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
     },
 ];
@@ -117,34 +117,34 @@ function writeToFile(fileName, data) {
 
 function init() {
     inquirer.prompt(questionsManager).then((answers) => {
-        if (questionsManager.teamMember = 'Engineer') {
+        if (answers.teamMember === 'Engineer') {
             return addEngineer();
-        } else if (questionsManager.teamMember = 'Intern') {
+        } else if (answers.teamMember === 'Intern') {
             return addIntern();
-        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
-        }
+        } else writeToFile(fileName, answers);
+        return;
     })
-};;
+};
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answers) => {
-        if (questionsEngineer.teamMember = 'Engineer') {
+        if (answers.teamMember === 'Engineer') {
             return addEngineer();
-        } else if (questionsEngineer.teamMember = 'Intern') {
+        } else if (answers.teamMember === 'Intern') {
             return addIntern();
-        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
-        }
+        } else writeToFile(fileName, answers);
+        return;
     })
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answers) => {
-        if(questionsIntern.teamMember = 'Engineer') {
+        if(answers.teamMember === 'Engineer') {
             return addEngineer();
-        } else if (questionsEngineer.teamMember = 'Intern') {
+        } else if (answers.teamMember === 'Intern') {
             return addIntern();
-        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
-        }
+        } else writeToFile(fileName, answers);
+        return;
     })
 };
 
