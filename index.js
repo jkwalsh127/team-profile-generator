@@ -33,7 +33,7 @@ const questionsManager = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        name: 'teamMember',
+        name: 'next',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
     },
 ];
@@ -65,7 +65,7 @@ const questionsEngineer = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        name: 'teamMember',
+        name: 'next',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
     },
 ];
@@ -97,11 +97,25 @@ const questionsIntern = [
     {
         type: 'list',
         message: 'Which type of team member would you like to add?',
-        name: 'teamMember',
+        name: 'next',
         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
     },
 ];
 
+const manager = [];
+function storeManager(data) {
+    manager.push(data);
+}
+
+const engineers = [];
+function storeEngineer(data) {
+    engineers.push(data);
+};
+
+const interns = [];
+function storeIntern(data) {
+    interns.push(data);
+};
 
 /**
  * 
@@ -117,42 +131,46 @@ function writeToFile(fileName, data) {
     )
 };
 
+function condenseData() {
+    const condensedArrays = manager.concat(engineers).concat(interns);
+    console.log(condensedArrays);
+};
+
 function init() {
     inquirer.prompt(questionsManager).then((answers) => {
-        if (answers.teamMember === 'Engineer') {
+        if (answers.next === 'Engineer') {
+            storeManager(answers);
             return addEngineer();
-        } else if (answers.teamMember === 'Intern') {
+        } else if (answers.next === 'Intern') {
+            storeManager(answers);
             return addIntern();
         } else writeToFile(fileName, answers);
-        return;
     })
 };
 
 function addEngineer() {
     inquirer.prompt(questionsEngineer).then((answers) => {
-        if (answers.teamMember === 'Engineer') {
-            generateEngineerCard(answers);
+        if (answers.next === 'Engineer') {
+            storeEngineer(answers);
             return addEngineer();
-        } else if (answers.teamMember === 'Intern') {
-            generateEngineerCard(answers);
+        } else if (answers.next === 'Intern') {
+            storeEngineer(answers);
             return addIntern();
-        } else generateEngineerCard(answers);
-        writeToFile(fileName, answers);
-        return;
+        } else storeEngineer(answers);
+        condenseData();
     })
 };
 
 function addIntern() {
     inquirer.prompt(questionsIntern).then((answers) => {
-        if(answers.teamMember === 'Engineer') {
-            generateInternCard(answers);
+        if(answers.next === 'Engineer') {
+            storeIntern(answers);
             return addEngineer();
-        } else if (answers.teamMember === 'Intern') {
-            generateInternCard(answers);
+        } else if (answers.next === 'Intern') {
+            storeIntern(answers);
             return addIntern();
-        } else generateInternCard(answers);
-        writeToFile(fileName, answers);
-        return;
+        } else storeIntern(answers);
+        condenseData();
     })
 };
 
