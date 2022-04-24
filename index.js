@@ -106,14 +106,14 @@ const questionsIntern = [
  * @param {string} fileName - the name of the .md file that will be written
  * @param {object} data - the objectified answers provided by the user and passed from init()
  */
-// function writeToFile(fileName, data) {
+function writeToFile(fileName, data) {
 
-//     let writeData = generateMarkdown(data);
+    let writeData = generateHTML(data);
 
-//     fs.writeFile(fileName, writeData, (err) =>
-//         err ? console.log(err) : console.log('README.md created!')
-//     )
-// };
+    fs.writeFile(fileName, writeData, (err) =>
+        err ? console.log(err) : console.log('generated.html created!')
+    )
+};
 
 function init() {
     inquirer.prompt(questionsManager).then((answers) => {
