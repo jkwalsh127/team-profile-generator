@@ -127,8 +127,7 @@ function condenseData() {
 
 
 function writeToFile(fileName, managers, engineers, interns) {
-    let writeDatas = {managers, engineers, interns};
-    console.log(writeDatas);
+
     let writeData = generateHTML({managers, engineers, interns});
 
 
@@ -145,7 +144,8 @@ function init() {
         } else if (answers.next === 'Intern') {
             storeManager(answers);
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else storeManager(answers);
+        condenseData();
     })
 };
 
