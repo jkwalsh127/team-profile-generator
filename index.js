@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
-// const fs = require('fs');
-// const generateMarkdown = require('./utils/generateMarkdown.js');
-// const fileName = 'samplePage.html';
+const fs = require('fs');
+const generateHTML = require('./src/generateHTML.js');
+const fileName = 'generated.html';
 
 /**
  * this array of prompts will be sent to the inquirer module in the init() fxn
