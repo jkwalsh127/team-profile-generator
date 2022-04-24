@@ -1,7 +1,7 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
-const generateHTML = require('./src/generateHTML.js');
-const fileName = 'generated.html';
+const generateHTML = require('./src/generator.js');
+const fileName = './dist/generated.html';
 
 /**
  * this array of prompts will be sent to the inquirer module in the init() fxn
@@ -121,7 +121,8 @@ function init() {
             return addEngineer();
         } else if (questionsManager.teamMember = 'Intern') {
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
+        }
     })
 };;
 
@@ -131,7 +132,8 @@ function addEngineer() {
             return addEngineer();
         } else if (questionsEngineer.teamMember = 'Intern') {
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
+        }
     })
 };
 
@@ -141,7 +143,8 @@ function addIntern() {
             return addEngineer();
         } else if (questionsEngineer.teamMember = 'Intern') {
             return addIntern();
-        } else writeToFile(fileName, answers);
+        } else if (questionsManager.teamMember = "I don't want to add any more team members.") { writeToFile(fileName, answers);
+        }
     })
 };
 
