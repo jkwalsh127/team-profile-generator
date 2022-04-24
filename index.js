@@ -27,7 +27,7 @@ const questionsManager = [
     {
         type: 'input',
         message: "What is the team manager's office number?",
-        name: 'office-number',
+        name: 'officeNumber',
     },
     {
         type: 'list',
@@ -91,7 +91,7 @@ const questionsIntern = [
     {
         type: 'input',
         message: "What is the intern's school name?",
-        name: 'github',
+        name: 'school',
     },
     {
         type: 'list',
@@ -101,34 +101,36 @@ const questionsIntern = [
     },
 ];
 
-const manager = [];
+const managerArray = [];
 function storeManager(data) {
-    manager.push(data);
+    managerArray.push(data);
 }
 
-const engineers = [];
+const engineersArray = [];
 function storeEngineer(data) {
-    engineers.push(data);
+    engineersArray.push(data);
 };
 
-const interns = [];
+const internsArray = [];
 function storeIntern(data) {
-    interns.push(data);
+    internsArray.push(data);
 };
 
 function condenseData() {
     const fileName = './dist/generated.html';
+    const managers = managerArray;
+    const engineers = engineersArray;
+    const interns = internsArray;
 
-    const team = manager.concat(engineers).concat(interns);
-    console.log(team);
-
-    writeToFile(fileName, team)    
+    writeToFile(fileName, managers, engineers, interns)    
 };
 
 
-function writeToFile(fileName, data) {
+function writeToFile(fileName, managers, engineers, interns) {
+    let writeDatas = {managers, engineers, interns};
+    console.log(writeDatas);
+    let writeData = generateHTML({managers, engineers, interns});
 
-    let writeData = generateHTML({data});
 
     fs.writeFile(fileName, writeData, (err) =>
         err ? console.log(err) : console.log('generated.html created!')
