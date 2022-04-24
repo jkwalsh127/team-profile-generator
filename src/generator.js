@@ -40,7 +40,7 @@ function generateHTML(data) {
  function generateCardsEngineer(engineers){
     ret = "";
     engineers.forEach(engineer => {
-        ret = `${ret}<section id='card'><div id='card-head'><h2 id='employee-name'>${engineer.name}</h2><h3 id='job-title'>Engineer</h3></div><div id='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${engineer.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${engineer.email}' target='_blank'>${engineer.email}</a></p></div><div class='content'><h4 class='label'>GitHub: </h4><p class='label'>${engineer.github}</p></div></div></section>\n`;
+        ret = `${ret}<section id='card'><div id='card-head'><h2 id='employee-name'>${engineer.name}</h2><h3 id='job-title'>Engineer</h3></div><div id='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${engineer.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${engineer.email}' target='_blank'>${engineer.email}</a></p></div><div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${engineer.github}' target='_blank'></p></div></div></section>\n`;
     });
     return ret;
 };
