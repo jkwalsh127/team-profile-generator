@@ -3,7 +3,6 @@ function generateHTML(data) {
     const engineerCards = generateCardsEngineer(data.engineers);    
     const internCards = generateCardsIntern(data.interns);    
 
-
     return `
     <!DOCTYPE html>
     <html lang='en-US'>
@@ -32,7 +31,7 @@ function generateHTML(data) {
  function generateManagerCard(managers){
     ret = "";
     managers.forEach(manager => {
-        ret = `<section id='card'><div id='card-head'><h2 id='employee-name'>${manager.name}</h2><h3 id='job-title'>Manager</h3></div><div id='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${manager.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${manager.email}' target='_blank'>${manager.email}</a></p></div><div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${manager.officeNumber}</p></div></div></section>`;
+        ret = `<section class='card'><div class='card-head'><h2 class='employee-name'>${manager.name}</h2><h3 class='job-title'>Manager</h3></div><div class='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${manager.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${manager.email}' target='_blank'>${manager.email}</a></p></div><div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${manager.officeNumber}</p></div></div></section>`;
     });
     return ret;
 };
@@ -40,7 +39,7 @@ function generateHTML(data) {
  function generateCardsEngineer(engineers){
     ret = "";
     engineers.forEach(engineer => {
-        ret = `${ret}<section id='card'><div id='card-head'><h2 id='employee-name'>${engineer.name}</h2><h3 id='job-title'>Engineer</h3></div><div id='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${engineer.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${engineer.email}' target='_blank'>${engineer.email}</a></p></div><div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${engineer.github}' target='_blank'></p></div></div></section>\n`;
+        ret = `${ret}<section class='card'><div class='card-head'><h2 class='employee-name'>${engineer.name}</h2><h3 class='job-title'>Engineer</h3></div><div class='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${engineer.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${engineer.email}' target='_blank'>${engineer.email}</a></p></div><div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${engineer.github}' target='_blank'>${engineer.github}</p></div></div></section>\n`;
     });
     return ret;
 };
@@ -48,7 +47,7 @@ function generateHTML(data) {
  function generateCardsIntern(interns){
     ret = "";
     interns.forEach(intern => {
-        ret = `${ret}<section id='card'><div id='card-head'><h2 id='employee-name'>${intern.name}</h2><h3 id='job-title'>Intern</h3></div><div id='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${intern.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${intern.email}' target='_blank'>${intern.email}</a></p></div><div class='content'><h4 class='label'>School: </h4><p class='label'>${intern.school}</p></div></div></section>\n`;
+        ret = `${ret}<section class='card'><div class='card-head'><h2 class='employee-name'>${intern.name}</h2><h3 class='job-title'>Intern</h3></div><div class='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${intern.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${intern.email}' target='_blank'>${intern.email}</a></p></div><div class='content'><h4 class='label'>School: </h4><p class='label'>${intern.school}</p></div></div></section>\n`;
     });
     return ret;
 };

@@ -23,7 +23,7 @@ body {
     justify-content: space-evenly;
 }
 
-#card {
+.card {
     min-width: 250px;
     border-radius: 20px;
     margin: 10px;
@@ -32,12 +32,12 @@ body {
     overflow: hidden;
     background-color: rgb(236, 236, 236);
 }
-#card-head {
+.card-head {
     display: flex;
     flex-direction: column;
     width: 80%;
 }
-#employee-name {
+.employee-name {
     color: black;
     font-size: 30px;
     margin: 0;
@@ -45,13 +45,13 @@ body {
     margin: 0 0 0 20px;
 }
 
-#job-title {
+.job-title {
     color: black;
     font-size: 24px;
     float: right;
     margin: 10px 0 10px 40px;
 }
-#card-content {
+.card-content {
     background-color: rgb(177, 177, 177);
     height: 160px;
     display: flex;
