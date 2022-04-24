@@ -3,7 +3,6 @@ const fs = require('fs');
 const generateHTML = require('./src/generator.js');
 const generateEngineerCard = require('./src/generator.js');
 const generateInternCard = require('./src/generator.js');
-const fileName = './dist/generated.html';
 
 /**
  * this array of prompts will be sent to the inquirer module in the init() fxn
@@ -117,23 +116,23 @@ function storeIntern(data) {
     interns.push(data);
 };
 
-/**
- * 
- * @param {string} fileName - the name of the .md file that will be written
- * @param {object} data - the objectified answers provided by the user and passed from init()
- */
+function condenseData() {
+    const fileName = './dist/generated.html';
+
+    const team = manager.concat(engineers).concat(interns);
+    console.log(team);
+
+    writeToFile(fileName, team)    
+};
+
+
 function writeToFile(fileName, data) {
 
-    let writeData = generateHTML(data);
+    let writeData = generateHTML({data});
 
     fs.writeFile(fileName, writeData, (err) =>
         err ? console.log(err) : console.log('generated.html created!')
     )
-};
-
-function condenseData() {
-    const condensedArrays = manager.concat(engineers).concat(interns);
-    console.log(condensedArrays);
 };
 
 function init() {
