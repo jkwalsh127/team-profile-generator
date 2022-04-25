@@ -5,8 +5,7 @@ const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
 const intern = require('./lib/intern');
 const prompts = require('./src/prompts');
-
-
+const fileName = './dist/generated.html';
 
 const employees = [];
 
@@ -40,7 +39,7 @@ function nextEmployee() {
             return nextIntern();
         } else 
         console.log(employees);
-        return generateHTML(employees);
+        return writeToFile(fileName, employees);
     })
 }
 function nextEngineer() {
@@ -78,10 +77,18 @@ function nextIntern() {
     })
 };
 
+function writeToFile(filename, employees) {
+    let writeData = generator(employees);
+    fs.writeFile(filename, writeData, (err) => {
+        if (err) {throw err;}
+        console.log(`successfully wrote to ${filename}`);
+    })
+}
+
 init();
 
-module.exports = generateHTML;
-        // if (answers.next === 'Engineer') {
+// module.exports = passEmployees;
+    // if (answers.next === 'Engineer') {
         //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
         //     employees.push(newManager);
             // return addEngineer();
