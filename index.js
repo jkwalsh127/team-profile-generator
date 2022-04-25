@@ -69,7 +69,7 @@ function nextEmployee() {
             return nextEngineer();
         } else if (answers.next === 'Intern') {
             return nextIntern();
-        } else return passEmployees();
+        } else return generateHTML(employees);
     })
 }
 function nextEngineer() {
@@ -106,13 +106,10 @@ function nextIntern() {
         return nextEmployee();
     })
 };
-function passEmployees() {
-    console.log('employees read to send!');
-    console.log(employees);
-}
 
 init();
 
+module.exports = generateHTML;
         // if (answers.next === 'Engineer') {
         //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
         //     employees.push(newManager);
