@@ -78,11 +78,10 @@ function nextIntern() {
 };
 
 function writeToFile(filename, employees) {
-    let writeData = generator(employees);
-    fs.writeFile(filename, writeData, (err) => {
-        if (err) {throw err;}
-        console.log(`successfully wrote to ${filename}`);
-    })
+    let writeData = generateHTML(employees);
+    fs.writeFile(filename, writeData, (err) =>
+        err ? console.log(err) : console.log('generated.html created!')
+)
 }
 
 init();

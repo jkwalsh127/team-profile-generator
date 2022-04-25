@@ -1,23 +1,24 @@
+function passEmployees(employees) {
+  console.log("here is your team!");
+  console.log(employees);
+  employees.forEach(employee => generateCard(employee));
+    for (var i = 0; i < employees.length; i++) {
+      generateCard(employees[i]);
+    }
+};
 
-// async function passEmployees(employees) {
-//   const employeesList = await getEmployees();
-//   console.log("here is your team!");
-//   console.log(employees);
-//   // employeesList.forEach(employee => generateCard(employee));
-//     // for (var i = 0; i < employees.length; i++) {
-//     //   generateCard(employees[i]);
-//     // }
-// };
+
+function generateHTML(employees) {
+
+  passEmployees(employees)
+
+
 
 function generateCard(employee) {
   console.log('Here is your next employee!');
   console.timeLog(employee);
 }
-
-
-
-// function generateHTML() {
-
+}
 
 
     // return `
@@ -69,4 +70,4 @@ function generateCard(employee) {
 //     return ret;
 // };
 
-// module.exports = generateHTML;
+module.exports = generateHTML;
