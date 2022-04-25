@@ -4,51 +4,20 @@ const generateHTML = require('./src/generator.js');
 const manager = require('./lib/manager');
 const engineer = require('./lib/engineer');
 const intern = require('./lib/intern');
+const prompts = require('./src/prompts');
 
-const managerPrompt = [
-    {
-        type: 'confirm',
-        message: "Hit enter to begin by adding a manager",
-        name: 'begin'
-    },
-]
-const employeePrompt = [
-    {
-        type: 'input',
-        message: "What is the employee's name?",
-        name: 'name'
-    },
-    {
-        type: 'input',
-        message: "What is their id?",
-        name: 'id'
-    },
-    {
-        type: 'input',
-        message: "What is their email?",
-        name: 'email'
-    }
-]
 
-const nextPrompt = [
-    {
-        type: 'list',
-        message: 'Which position would you like to add?',
-        name: 'next',
-        choices: ['Engineer', 'Intern', 'End prompt']
-    }
-]
 
 const employees = [];
 
 function init() {
-    inquirer.prompt(managerPrompt).then(() => {
+    inquirer.prompt(prompts.managerPrompt).then(() => {
         return managerQuestions();
     }
 )};
 function managerQuestions() {
     inquirer.prompt([
-        ...employeePrompt,
+        ...prompts.employeePrompt,
             {
                 type: 'input',
                 message: 'What is their office number?',
@@ -64,17 +33,19 @@ function managerQuestions() {
     })
 };
 function nextEmployee() {
-    inquirer.prompt(nextPrompt).then((answers) => {
+    inquirer.prompt(prompts.nextPrompt).then((answers) => {
         if (answers.next === 'Engineer') {
             return nextEngineer();
         } else if (answers.next === 'Intern') {
             return nextIntern();
-        } else return generateHTML(employees);
+        } else 
+        console.log(employees);
+        return generateHTML(employees);
     })
 }
 function nextEngineer() {
     inquirer.prompt([
-        ...employeePrompt,
+        ...prompts.employeePrompt,
             {
                 type: 'input',
                 message: 'What is their GitHub profile name?',
@@ -91,7 +62,7 @@ function nextEngineer() {
 };
 function nextIntern() {
     inquirer.prompt([
-        ...employeePrompt,
+        ...prompts.employeePrompt,
             {
                 type: 'input',
                 message: 'What is their school name?',
