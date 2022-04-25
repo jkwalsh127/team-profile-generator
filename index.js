@@ -1,37 +1,87 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHTML = require('./src/generator.js');
-const storemanager = require('./lib/manager');
+const manager = require('./lib/manager');
 const employee = require('./lib/employee');
 
-const questionsManager = [
+const managerPrompt = [
+    {
+        type: 'confirm',
+        message: "Start by adding a manager",
+    },
+]
+const employeePrompt = [
     {
         type: 'input',
-        message: "What is the team manager's name?",
-        name: 'name',
+        message: "What is the employee's name?",
+        name: 'name'
     },
     {
         type: 'input',
-        message: "What is the team manager's id?",
-        name: 'id',
+        message: "What is their id?",
+        name: 'id'
     },
     {
         type: 'input',
-        message: "What is the team manager's email?",
-        name: 'email',
-    },
-    {
-        type: 'input',
-        message: "What is the team manager's office number?",
-        name: 'officeNumber',
-    },
+        message: "What is their email?",
+        name: 'email'
+    }
+]
+
+const nextPrompt = [
     {
         type: 'list',
-        message: 'Which type of team member would you like to add?',
+        message: 'Which position would you like to add?',
         name: 'next',
-        choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
-    },
-];
+        choices: ['Engineer', 'Intern']
+    }
+]
+
+function init() {
+    inquirer.prompt(managerPrompt).then(() => {
+        return managerQuestions();
+    }
+)};
+function managerQuestions() {
+    inquirer.prompt([
+            ...employeePrompt,
+                {
+                    type: 'input',
+                    message: 'What is their office number?',
+                    name: 'officeNumber'
+                }
+            ]).then((answers) => {
+        var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        employees.push(newManager);
+        return nextEmployee();
+    }
+)};
+function nextEmployee() {
+    inquirer.prompt(nextPrompt).then((answers) => {
+        if (answers.next === 'Engineer') {
+            employee.
+        }
+    })
+}
+
+        // if (answers.next === 'Engineer') {
+        //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        //     employees.push(newManager);
+            // return addEngineer();
+        // } else if (answers.next === 'Intern') {
+        //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        //     employees.push(newManager);
+            // return addIntern();
+        // } 
+        var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        employees.push(newManager);
+        console.log(employees);
+        var roles = employees.forEach(employee.getRole());
+        console.log(roles);
+        // condenseData();
+    })
+}; 
+
 
 // const questionsManager = [
 //     {
@@ -120,15 +170,14 @@ const questionsIntern = [
     },
 ];
 
-const managerArray = [];
-function storeManager(data) {
-    employee.getRole();
-    employee.getName(data.name);
-    employee.getId(data.getId);
-    employee.getEmail(data.email);
-    console.log(data);
-    // managerArray.push(data);
-}
+const employees = [];
+
+
+
+
+// function storeManager(data) {
+//     managerArray.push(data);
+// }
 
 // const engineersArray = [];
 // function storeEngineer(data) {
@@ -154,24 +203,30 @@ function storeManager(data) {
 
 //     let writeData = generateHTML({managers, engineers, interns});
 
-
 //     fs.writeFile(fileName, writeData, (err) =>
 //         err ? console.log(err) : console.log('generated.html created!')
 //     )
 // };
 
-function init() {
-    inquirer.prompt(questionsManager).then((answers) => {
-        if (answers.next === 'Engineer') {
-            new storemanager(answers.name, answers.id, answers.email);
-            // return addEngineer();
-        } else if (answers.next === 'Intern') {
-            new storemanager(answers.name, answers.id, answers.email);
-            // return addIntern();
-        } else new storemanager(answers.name, answers.id, answers.email);
-        // condenseData();
-    })
-};
+// function init() {
+//     inquirer.prompt(questionsManager).then((answers) => {
+//         // if (answers.next === 'Engineer') {
+//         //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+//         //     employees.push(newManager);
+//             // return addEngineer();
+//         // } else if (answers.next === 'Intern') {
+//         //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+//         //     employees.push(newManager);
+//             // return addIntern();
+//         // } 
+//         var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+//         employees.push(newManager);
+//         console.log(employees);
+//         var roles = employees.forEach(employee.getRole());
+//         console.log(roles);
+//         // condenseData();
+//     })
+// };
 
 // function init() {
 //     inquirer.prompt(questionsManager).then((answers) => {
