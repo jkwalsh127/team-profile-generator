@@ -2,12 +2,14 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateHTML = require('./src/generator.js');
 const manager = require('./lib/manager');
-const employee = require('./lib/employee');
+const engineer = require('./lib/engineer');
+const intern = require('./lib/intern');
 
 const managerPrompt = [
     {
         type: 'confirm',
-        message: "Start by adding a manager",
+        message: "Hit enter to begin by adding a manager",
+        name: 'begin'
     },
 ]
 const employeePrompt = [
@@ -33,9 +35,11 @@ const nextPrompt = [
         type: 'list',
         message: 'Which position would you like to add?',
         name: 'next',
-        choices: ['Engineer', 'Intern']
+        choices: ['Engineer', 'Intern', 'End prompt']
     }
 ]
+
+const employees = [];
 
 function init() {
     inquirer.prompt(managerPrompt).then(() => {
@@ -44,25 +48,70 @@ function init() {
 )};
 function managerQuestions() {
     inquirer.prompt([
-            ...employeePrompt,
-                {
-                    type: 'input',
-                    message: 'What is their office number?',
-                    name: 'officeNumber'
-                }
-            ]).then((answers) => {
+        ...employeePrompt,
+            {
+                type: 'input',
+                message: 'What is their office number?',
+                name: 'officeNumber'
+            }
+    ]).then((answers) => {
         var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        // console.log(newManager);
         employees.push(newManager);
+        // console.log(employees);
+
         return nextEmployee();
-    }
-)};
+    })
+};
 function nextEmployee() {
     inquirer.prompt(nextPrompt).then((answers) => {
         if (answers.next === 'Engineer') {
-            employee.
-        }
+            return nextEngineer();
+        } else if (answers.next === 'Intern') {
+            return nextIntern();
+        } else return passEmployees();
     })
 }
+function nextEngineer() {
+    inquirer.prompt([
+        ...employeePrompt,
+            {
+                type: 'input',
+                message: 'What is their GitHub profile name?',
+                name: 'github'
+            }
+    ]).then((answers) => {
+        var newEngineer = new engineer(answers.name, answers.id, answers.email, answers.github);
+        // console.log(newEngineer);
+        employees.push(newEngineer);
+        // console.log(employees);
+
+        return nextEmployee();
+    })
+};
+function nextIntern() {
+    inquirer.prompt([
+        ...employeePrompt,
+            {
+                type: 'input',
+                message: 'What is their school name?',
+                name: 'school'
+            }
+    ]).then((answers) => {
+        var newIntern = new intern(answers.name, answers.id, answers.email, answers.school);
+        // console.log(newIntern);
+        employees.push(newIntern);
+        // console.log(employees);
+
+        return nextEmployee();
+    })
+};
+function passEmployees() {
+    console.log('employees read to send!');
+    console.log(employees);
+}
+
+init();
 
         // if (answers.next === 'Engineer') {
         //     var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
@@ -73,14 +122,14 @@ function nextEmployee() {
         //     employees.push(newManager);
             // return addIntern();
         // } 
-        var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
-        employees.push(newManager);
-        console.log(employees);
-        var roles = employees.forEach(employee.getRole());
-        console.log(roles);
-        // condenseData();
-    })
-}; 
+//         var newManager = new manager(answers.name, answers.id, answers.email, answers.officeNumber);
+//         employees.push(newManager);
+//         console.log(employees);
+//         var roles = employees.forEach(employee.getRole());
+//         console.log(roles);
+//         // condenseData();
+//     })
+// }; 
 
 
 // const questionsManager = [
@@ -112,65 +161,65 @@ function nextEmployee() {
 //     },
 // ];
 
-const questionsEngineer = [
-    {
-        type: 'input',
-        message: "What is the engineer's name?",
-        name: 'name',
-    },
-    {
-        type: 'input',
-        message: "What is the engineer's id?",
-        name: 'id',
-    },
-    {
-        type: 'input',
-        message: "What is the engineer's email?",
-        name: 'email',
-    },
-    {
-        type: 'input',
-        message: "What is the engineer's github username?",
-        name: 'github',
-    },
-    {
-        type: 'list',
-        message: 'Which type of team member would you like to add?',
-        name: 'next',
-        choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
-    },
-];
+// const questionsEngineer = [
+//     {
+//         type: 'input',
+//         message: "What is the engineer's name?",
+//         name: 'name',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the engineer's id?",
+//         name: 'id',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the engineer's email?",
+//         name: 'email',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the engineer's github username?",
+//         name: 'github',
+//     },
+//     {
+//         type: 'list',
+//         message: 'Which type of team member would you like to add?',
+//         name: 'next',
+//         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
+//     },
+// ];
 
-const questionsIntern = [
-    {
-        type: 'input',
-        message: "What is the intern's name?",
-        name: 'name',
-    },
-    {
-        type: 'input',
-        message: "What is the intern's id?",
-        name: 'id',
-    },
-    {
-        type: 'input',
-        message: "What is the intern's email?",
-        name: 'email',
-    },
-    {
-        type: 'input',
-        message: "What is the intern's school name?",
-        name: 'school',
-    },
-    {
-        type: 'list',
-        message: 'Which type of team member would you like to add?',
-        name: 'next',
-        choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
-    },
-];
+// const questionsIntern = [
+//     {
+//         type: 'input',
+//         message: "What is the intern's name?",
+//         name: 'name',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the intern's id?",
+//         name: 'id',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the intern's email?",
+//         name: 'email',
+//     },
+//     {
+//         type: 'input',
+//         message: "What is the intern's school name?",
+//         name: 'school',
+//     },
+//     {
+//         type: 'list',
+//         message: 'Which type of team member would you like to add?',
+//         name: 'next',
+//         choices: ['Engineer', 'Intern', "I don't want to add any more team members."]
+//     },
+// ];
 
-const employees = [];
+
 
 
 
@@ -267,6 +316,6 @@ const employees = [];
 //     })
 // };
 
-init();
+// init();
 
-module.exports = storeManager;
+// module.exports = storeManager;
