@@ -1,4 +1,8 @@
-
+/**
+ * returns the coplete string of html to be generated, through the use of child functions to generate cards for each employee in 'employees' array
+ * @param {array} employees the array of class passed by writeToFile
+ * @returns {string} complete generated html content
+ */
 function generateHTML(employees) {
 
   return `<!DOCTYPE html>
@@ -21,18 +25,28 @@ function generateHTML(employees) {
     </html>
     `;
 
+  /**
+   * iterates through the 'employees' array and passes each employee object into generateCard, returning a string of html with each employee card to be inserted into the final returned html string
+   * @param {array} employees receives employees array from parent function
+   * @returns {string} html represnting the card portion of each employee to be passed into main html content
+   */
   function passCards(employees) {
     console.log("here is your team!");
     console.log(employees);
     card = ``;
     employees.forEach(employee => {
       card += generateCard(employee);
-      console.log(card);
+      console.log(typeof employee);
       return card
     })
     return card;
   };
 
+  /**
+   * generates the card for each employee
+   * @param {object} employee each employee passed from the employees array by passCards
+   * @returns {string} html card content
+   */
   function generateCard(employee) {
     let unique;
     let role = employee.getRole();
@@ -68,34 +82,5 @@ function generateHTML(employees) {
       </section>`
     }
 };
-
-
-//  function generateManagerCard(managers){
-//     ret = "";
-//     managers.forEach(manager => {
-//         ret = ``;
-//     });
-//     return ret;
-// };
-
-//  function generateCardsEngineer(engineers){
-//     ret = "";
-//     engineers.forEach(engineer => {
-//         ret = `${ret}<section class='card'><div class='card-head'><h2 class='employee-name'>${engineer.name}</h2><h3 class='job-title'>Engineer</h3></div><div class='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${engineer.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${engineer.email}' target='_blank'>${engineer.email}</a></p></div>
-        
-//         </div></section>\n`;
-//     });
-//     return ret;
-// };
-
-//  function generateCardsIntern(interns){
-//     ret = "";
-//     interns.forEach(intern => {
-//         ret = `${ret}<section class='card'><div class='card-head'><h2 class='employee-name'>${intern.name}</h2><h3 class='job-title'>Intern</h3></div><div class='card-content'><div class='content'><h4 class='label'>ID: </h4><p class='label'>${intern.id}</p></div><div class='content'><h4 class='label'>Email: </h4><p class='label'><a href='mailto:${intern.email}' target='_blank'>${intern.email}</a></p></div>
-        
-//         </div></section>\n`;
-//     });
-//     return ret;
-// };
 
 module.exports = generateHTML;
