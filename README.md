@@ -27,7 +27,7 @@ Once everything is installed, using the application is easy. You can run the tes
 
 Watch this run through to observe how the application is used 
 
-https://user-images.githubusercontent.com/101354032/164598808-77fa30e3-9de3-4a79-89de-90a5d328f5c2.mp4
+https://user-images.githubusercontent.com/101354032/165249133-217bb3bf-c586-4879-9f0d-4e7d09c19b0d.mp4
 
 ## Credits
 This was a solo project inspired by the staff at the UC Berkeley full-stack coding bootcamp. Thanks to those instructors and my fellow classmates for providing the knowledge and the incentive. 
