@@ -5,7 +5,8 @@
 |   Languages   | Used      |  Node Modules   | Used      |   runtime   | Used      |
 | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | JavaScript        |   ✅        | Inquirer      |   ✅        | node.js     |   ✅        |
-|                   |               | Jest          |  ✅       |           |           |
+| HTML       |         ✅      | Jest          |  ✅       |           |           |
+| CSS       |         ✅      |
 
 # Table of contents
 * [Description](#description)
