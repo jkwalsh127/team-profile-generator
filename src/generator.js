@@ -3,7 +3,7 @@
 
 function generateHTML(employees) {
 
-  passEmployees(employees)
+  passEmployees(employees);
 
   function passEmployees(employees) {
     console.log("here is your team!");
@@ -16,14 +16,25 @@ function generateHTML(employees) {
 
   function generateCard(employee) {
     console.log('Here is your next employee!');
+    console.log(employee);
     let role = employee.getRole();
+    console.log(role);
+    let unique = ``;
     if (role === 'Manager') {
-      role = `<div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${manager.officeNumber}</p></div>`;
+      let officenumber = employee.getOfficeNumber();
+      console.log(officenumber);
+      unique = `<div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${officenumber}</p></div>`;
+      console.log(unique);
+      return unique;
     } else if (role === 'Engineer') {
-      role = `<div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${engineer.github}' target='_blank'>${engineer.github}</p></div>`;
+      let github = employee.getGitHub();
+      unique = `<div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${github}' target='_blank'>${github}</p></div>`;
+      return unique;
     } else if (role === `Intern`) {
-      role = `<div class='content'><h4 class='label'>School: </h4><p class='label'>${intern.school}</p></div>`
-    } 
+      let school = employee.getSchool();
+      unique = `<div class='content'><h4 class='label'>School: </h4><p class='label'>${school}</p></div>`;
+      return unique;
+    }
 
     return `
     <!DOCTYPE html>
@@ -56,7 +67,7 @@ function generateHTML(employees) {
                 <a href='mailto:${employees.email}' target='_blank'>${employees.email}</a>
               </p>
             </div>
-            ${role}
+            ${unique}
           </div>
         </section>
       </section>

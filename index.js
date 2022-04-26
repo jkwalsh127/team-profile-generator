@@ -77,8 +77,9 @@ function nextIntern() {
     })
 };
 
-function writeToFile(filename, employees) {
+async function writeToFile(filename, employees) {
     let writeData = generateHTML(employees);
+    console.log(writeData);
     fs.writeFile(filename, writeData, (err) =>
         err ? console.log(err) : console.log('generated.html created!')
 )
