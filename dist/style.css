@@ -57,7 +57,7 @@ body {
 }
 .card-content {
     background-color: rgb(123, 181, 109);
-    height: 160px;
+    min-height: 220px;
     display: flex;
     flex-direction: column;
     justify-content: center;
