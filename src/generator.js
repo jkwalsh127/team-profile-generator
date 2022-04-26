@@ -49,6 +49,9 @@ function generateHTML(employees) {
    */
   function generateCard(employee) {
     let unique;
+    let name = employee.getName();
+    let id = employee.getId();
+    let email = employee.getEmail();
     let role = employee.getRole();
     if (role === 'Manager') {
       let officenumber = employee.getOfficeNumber();
@@ -62,18 +65,18 @@ function generateHTML(employees) {
     }
     return `<section class='card'>
         <div class='card-head'>
-          <h2 class='employee-name'>${employee.name}</h2>
+          <h2 class='employee-name'>${name}</h2>
           <h3 class='job-title'>${role}</h3>
         </div>
         <div class='card-content'>
           <div class='content'>
             <h4 class='label'>ID: </h4>
-            <p class='label'>${employee.id}</p>
+            <p class='label'>${id}</p>
           </div>
           <div class='content'>
             <h4 class='label'>Email: </h4>
             <p class='label'>
-              <a href='mailto:${employee.email}' target='_blank'>${employee.email}</a>
+              <a href='mailto:${email}' target='_blank'>${email}</a>
             </p>
           </div>
           ${unique}
