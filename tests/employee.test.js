@@ -8,6 +8,7 @@ describe('Employee', () => {
             const name = 'Bilbo';
             const id = '1';
             const email = 'Bilbo@gmail.com';
+            const role = 'Employee';
 
             //Act
             const obj = new Employee(name, id, email);
@@ -16,6 +17,10 @@ describe('Employee', () => {
             expect(obj.name).toEqual(name);
             expect(obj.id).toEqual(id);
             expect(obj.email).toEqual(email);
+            expect(obj.getRole()).toEqual(role);
+            expect(obj.getName()).toEqual(name);
+            expect(obj.getId()).toEqual(id);
+            expect(obj.getEmail()).toEqual(email);
         });
         //Exception test
         it("should throw an error if not provided a 'name' value", () => {

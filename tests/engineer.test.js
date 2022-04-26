@@ -9,6 +9,7 @@ describe('Engineer', () => {
             const id = 4;
             const email = 'sam@gmail.com';
             const github = 'samwise';
+            const role = 'Engineer';
 
             //Act
             const obj = new Engineer(name, id, email, github);
@@ -18,6 +19,8 @@ describe('Engineer', () => {
             expect(obj.id).toEqual(id);
             expect(obj.email).toEqual(email);
             expect(obj.github).toEqual(github);
+            expect(obj.getRole()).toEqual(role);
+            expect(obj.getGitHub()).toEqual(github);
         });
         //Exception test
         it("should throw an error if not provided a valid 'name' value", () => {

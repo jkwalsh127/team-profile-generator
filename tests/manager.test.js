@@ -9,6 +9,7 @@ describe('Manager', () => {
             const id = 2;
             const email = 'Frodo@gmail.com';
             const officeNumber = 127;
+            const role = 'Manager';
 
             //Act
             const obj = new Manager(name, id, email, officeNumber);
@@ -18,6 +19,8 @@ describe('Manager', () => {
             expect(obj.id).toEqual(id);
             expect(obj.email).toEqual(email);
             expect(obj.officeNumber).toEqual(officeNumber);
+            expect(obj.getRole()).toEqual(role);
+            expect(obj.getOfficeNumber()).toEqual(officeNumber);
         });
 
         //Exception test

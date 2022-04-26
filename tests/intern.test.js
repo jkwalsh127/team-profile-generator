@@ -9,6 +9,7 @@ describe('Intern', () => {
             const id = 3;
             const email = 'pip@gmail.com';
             const school = 'Shire University';
+            const role = 'Intern';
 
             //Act
             const obj = new Intern(name, id, email, school);
@@ -18,6 +19,8 @@ describe('Intern', () => {
             expect(obj.id).toEqual(id);
             expect(obj.email).toEqual(email);
             expect(obj.school).toEqual(school);
+            expect(obj.getRole()).toEqual(role);
+            expect(obj.getSchool()).toEqual(school);
         });
         //Exception test
         it("should throw an error if not provided a valid 'name' value", () => {

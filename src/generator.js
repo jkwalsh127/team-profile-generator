@@ -50,7 +50,6 @@ function generateHTML(employees) {
   function generateCard(employee) {
     let unique;
     let role = employee.getRole();
-    console.log(role);
     if (role === 'Manager') {
       let officenumber = employee.getOfficeNumber();
       unique = `<div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${officenumber}</p></div>\n`;
