@@ -42,7 +42,7 @@ function generateHTML(employees) {
       unique = `<div class='content'><h4 class='label'>Office Number: </h4><p class='label'>${officenumber}</p></div>\n`;
     } else if (role === 'Engineer') {
       let github = employee.getGitHub();
-      unique = `<div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${github}' target='_blank'>${github}</p></div>\n`;
+      unique = `<div class='content'><h4 class='label'>GitHub: </h4><p class='label'><a href='https://github.com/${github}' target='_blank'>${github}</a></p></div>\n`;
     } else if (role === `Intern`) {
       let school = employee.getSchool();
       unique = `<div class='content'><h4 class='label'>School: </h4><p class='label'>${school}</p></div>\n`;
@@ -50,7 +50,7 @@ function generateHTML(employees) {
     return `<section class='card'>
         <div class='card-head'>
           <h2 class='employee-name'>${employee.name}</h2>
-          <h3 class='job-title'>Manager</h3>
+          <h3 class='job-title'>${role}</h3>
         </div>
         <div class='card-content'>
           <div class='content'>
