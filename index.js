@@ -37,9 +37,7 @@ function nextEmployee() {
             return nextEngineer();
         } else if (answers.next === 'Intern') {
             return nextIntern();
-        } else 
-        console.log(employees);
-        return writeToFile(fileName, employees);
+        } return writeToFile(fileName, employees);
     })
 }
 function nextEngineer() {
