@@ -37,7 +37,7 @@ function generateHTML(employees) {
     employees.forEach(employee => {
       card += generateCard(employee);
       console.log(typeof employee);
-      return card
+      return card;
     })
     return card;
   };
